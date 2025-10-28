@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профессиональный бухгалтер</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #fff9e6 0%, #fffdf0 50%, #ffffff 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: #fff8e1;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-weight: bold;
+            color: #b8860b;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(1rem, 3vw, 2rem);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #b8860b;
+            font-weight: 600;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+            background-color: rgba(255, 215, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 clamp(1rem, 3vw, 2rem);
+            display: flex;
+            align-items: center;
+            gap: clamp(2rem, 5vw, 4rem);
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        .photo-container {
+            flex: 1;
+            min-width: min(100%, 350px);
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-photo {
+            width: 100%;
+            max-width: min(500px, 90vw);
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.02);
+        }
+
+        .bio {
+            flex: 1;
+            min-width: min(100%, 350px);
+            background: rgba(255, 255, 255, 0.95);
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 248, 225, 0.5);
+        }
+
+        .bio h2 {
+            color: #b8860b;
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            text-align: center;
+        }
+
+        .bio p {
+            margin-bottom: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            color: #555;
+            text-align: justify;
+        }
+
+        .qualities {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .qualities li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #fff8e1;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            display: flex;
+            align-items: center;
+        }
+
+        .qualities li:before {
+            content: "✓";
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 0.8rem;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 0.3rem 0.6rem;
+            border-radius: 50%;
+        }
+
+        .footer {
+            background-color: #fff8e1;
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            text-align: center;
+            margin-top: auto;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: clamp(1rem, 3vw, 2rem);
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #b8860b;
+            font-weight: 600;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            transition: all 0.3s ease;
+            padding: 0.7rem 1.2rem;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+        }
+
+        .footer-links a:hover {
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .copyright {
+            color: #b8860b;
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
+            opacity: 0.8;
+        }
+
+        /* Адаптация для мобильных устройств */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .main-content {
+                margin: 1rem auto;
+                gap: 2rem;
+            }
+
+            .bio {
+                padding: 1.5rem;
+            }
+
+            .bio p {
+                text-align: left;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-links a {
+                width: 80%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-links a {
+                width: 200px;
+                text-align: center;
+            }
+
+            .main-content {
+                padding: 0 1rem;
+            }
+
+            .bio {
+                padding: 1rem;
+            }
+
+            .qualities li {
+                padding: 0.6rem 0;
+            }
+        }
+
+        /* Адаптация для очень больших экранов */
+        @media (min-width: 1600px) {
+            .main-content {
+                max-width: 1600px;
+            }
+            
+            .bio {
+                padding: 3rem;
+            }
+        }
+
+        /* Плавная прокрутка */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Улучшение доступности */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Бухгалтерские услуги</div>
+        <div class="nav-links">
+            <a href="https://t.me/buhgalterVera" target="_blank">Обо мне</a>
+            <a href="https://t.me/veragld0" target="_blank">Контакты</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="photo-container">
+            <img src="/logo.png" 
+                 alt="Профессиональный бухгалтер Вера"
+                 class="profile-photo">
+        </div>
+        
+        <div class="bio" id="about">
+            <h2>Профессиональный бухгалтер</h2>
+            <p>Добро пожаловать! Я - опытный бухгалтер с многолетним стажем работы в различных сферах бизнеса.</p>
+            <p>Специализируюсь на ведении бухгалтерского учета, налоговом консультировании и составлении финансовой отчетности.</p>
+            <p>Мой подход к работе сочетает в себе глубокие профессиональные знания и индивидуальный подход к каждому клиенту.</p>
+            
+            <ul class="qualities">
+                <li>Более 15 лет опыта</li>
+                <li>Высшее экономическое образование</li>
+                <li>Знание современных бухгалтерских программ</li>
+                <li>Ответственность и внимательность к деталям</li>
+                <li>Конфиденциальность и надежность</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="footer" id="contact">
+        <div class="footer-links">
+            <a href="tel:+79042104490">📞 +7 904 210 4490</a>
+            <a href="mailto:veragladenko@mail.ru">✉️ veragladenko@mail.ru</a>
+            <a href="https://t.me/buhgalterVera" target="_blank">📋 Записаться на консультацию</a>
+        </div>
+        <div class="copyright">
+            © 2024 Профессиональные бухгалтерские услуги. Все права защищены.
+        </div>
+    </footer>
+</body>
+</html>
